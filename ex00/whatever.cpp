@@ -24,7 +24,8 @@ min(T const & a, T const & b)
     return (a < b ? a : b);
 }
 
-int main(void)
+int
+main(void)
 {
     int a = 2;
     int b = 3;
@@ -43,5 +44,10 @@ int main(void)
     std::string const s2 = "chaine";
     std::cout << "min(c, d) = " << ::min(s1, s2) << std::endl;
     std::cout << "max(c, d) = " << ::max(s1, s2) << std::endl;
+     std::cout << "TEST AVEC DOUBLE" << std::endl;
+    double const d1 = 21.1;
+    double const d2 = 42.1;
+    std::cout << "min(c, d) = " << ::min(d1, d2) << std::endl;
+    std::cout << "max(c, d) = " << ::max(d1, d2) << std::endl;
     return 0;
 }

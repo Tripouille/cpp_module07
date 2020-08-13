@@ -1,5 +1,5 @@
 NAME				= a.out
-SRCS				= whatever.cpp		
+SRCS				= iter.cpp		
 OBJS				= ${SRCS:.cpp=.o}
 
 CC					= clang++
