@@ -10,7 +10,7 @@ iter(T * p, int const & size, void (*f)(T &))
 
 template<typename T>
 void
-showTab(T *p, int const & size)
+showTab(T const * p, int const & size)
 {
     for (int e = 0; e < size; e++)
         std::cout << "[" << p[e] << "]";
