@@ -1,43 +1,50 @@
 #include <iostream>
 
+class Awesome
+{
+	public:
+		Awesome( void ) : _n( 42 ) { return; }
+		int get( void ) const { return this->_n; }
+	private:
+		int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
+
+template< typename T >
+void print( T const & x ) { std::cout << x << std::endl; return; }
+
+template< typename T >
+void printPlus( T & x ) { std::cout << ++x << std::endl; return; }
+
 template<typename T>
 void
 iter(T * p, int const & size, void (*f)(T &))
 {
-    for (int e = 0; e < size; e++)
-        (*f)(p[e]);
+	for (int e = 0; e < size; e++)
+		(*f)(p[e]);
 }
 
 template<typename T>
 void
-showTab(T const * p, int const & size)
+iter(T const * p, int const & size, void (*f)(T const &))
 {
-    for (int e = 0; e < size; e++)
-        std::cout << "[" << p[e] << "]";
-    std::cout << std::endl;
-}
-
-template<typename T>
-void
-addOne(T & a)
-{
-    a +=1;
+	for (int e = 0; e < size; e++)
+		(*f)(p[e]);
 }
 
 int
 main(void)
 {
-    char    charTab[6] = {'0', '1', '2', '3', '4', '6'};
-    showTab(charTab, 6);
-    iter(charTab, 6, &addOne);
-    showTab(charTab, 6);
-    int     intTab[5] = {1, 2, 3, 4, 5};
-    showTab(intTab, 5);
-    iter(intTab, 5, &addOne);
-    showTab(intTab, 5);
-    double    doubleTab[3] = {-1.1, 0.2, 42.3};
-    showTab(doubleTab, 3);
-    iter(doubleTab, 3, &addOne);
-    showTab(doubleTab, 3);
-    return (0);
+	int tab[] = { 0, 1, 2, 3, 4 };
+	Awesome tab2[5];
+	int const tab3[5] = { 0, 10, 20, 30, 40 };
+
+	iter(tab, 5, print);
+	iter(tab2, 5, print);
+	std::cout << "printPlus" << std::endl;
+	iter(tab, 5, printPlus);
+	std::cout << "int const" << std::endl;
+	iter(tab3, 5, print);
+	return 0;
 }
