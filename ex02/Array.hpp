@@ -21,6 +21,8 @@ class Array
 		Array<T> &					operator=(Array<T> const & other);
 		T &							operator[](int)
 			throw(OutOfRangeIndexException);
+		T const &					operator[](int) const
+			throw(OutOfRangeIndexException);
 
 		int							size(void) const;
 

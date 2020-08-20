@@ -4,7 +4,7 @@
 
 template<typename T>
 void
-showTab(Array<T> & a)
+showTab(Array<T> const & a)
 {
     for (int e = 0; e < a.size(); e++)
         std::cout << "[" << a[e] << "]";
@@ -47,6 +47,14 @@ main(void)
     std::cout << "intArray2: "; showTab(intArray2);
     Array<std::string> strArrayEmpty;
     std::cout << "strArrayEmpty.size(): " << strArrayEmpty.size() << std::endl;
+    try
+    {
+        std::cout << "strArrayEmpty[0] " << strArrayEmpty[0] << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
     Array<std::string> strArray(2);
     std::cout << "strArray.size(): " << strArray.size() << std::endl;
     std::cout << "strArray: "; showTab(strArray);
@@ -58,5 +66,9 @@ main(void)
     std::cout << "strArray[0] = \"A\"" << std::endl ; strArray[0] = "A";
     std::cout << "strArray: "; showTab(strArray);
     std::cout << "strArray2: "; showTab(strArray2);
+    std::cout << "TEST ARRAY CONST AVEC []" << std::endl;
+    Array<int> const ica(2);
+    std::cout << "ica: "; showTab(ica);
+    std::cout << "ica[0] = " << ica[0] << std::endl;
     return (0);
 }

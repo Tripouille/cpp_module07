@@ -57,6 +57,16 @@ Array<T>::operator[](int i)
 	return (_array[i]);
 }
 
+template<typename T>
+T const &
+Array<T>::operator[](int i) const
+	throw(OutOfRangeIndexException)
+{
+	if (i < 0 || static_cast<unsigned int>(i) >= _size)
+		throw OutOfRangeIndexException();
+	return (_array[i]);
+}
+
 char const *
 OutOfRangeIndexException::what(void) const
 	throw ()
